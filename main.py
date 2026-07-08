@@ -1,10 +1,11 @@
-﻿﻿import argparse
+﻿# https://aibook.ren (AI全书)
+import argparse
 import sys
 import importlib
 from framework.core.context import Context
 
 def main():
-    parser = argparse.ArgumentParser(description="AutoWebFlow Browser Automation Framework")
+    parser = argparse.ArgumentParser(description="Auto-Chrome Browser Automation Framework")
     parser.add_argument("--task", type=str, required=True, help="Task module path (e.g., tasks.examples.linux_do_browser.LinuxDoBrowserTask)")
     parser.add_argument("--config", type=str, default="config/settings.yaml", help="Path to configuration file")
     

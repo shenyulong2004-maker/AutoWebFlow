@@ -1,8 +1,8 @@
-# AutoWebFlow
+# Auto-Chrome
 
-**AutoWebFlow** 是一个功能强大的自动化框架，专为提升日常工作效率而设计。基于该框架，你可以轻松实现**网页浏览任务自动化**、**数据采集与整理**、**信息检索与研报编写**、**自动化测试**以及各类**自动化网页办公**场景。
+**Auto-Chrome** 是一个功能强大的自动化框架，专为提升日常工作效率而设计。基于该框架，你可以轻松实现**网页浏览任务自动化**、**数据采集与整理**、**信息检索与研报编写**、**自动化测试**以及各类**自动化网页办公**场景。
 
-它通过 **CDP (Chrome DevTools Protocol)** 接管现有的浏览器会话，结合 **Playwright** 的强大控制力，并内置了 **AI Agent** 接口，使编写复杂的"人机协同"或"AI 驱动"的任务变得简单。
+它通过 **CDP (Chrome DevTools Protocol)** 接管现有的浏览器会话，结合 **Playwright** 的强大控制力，并内置了 **AI Agent** 接口，使编写复杂的“人机协同”或“AI 驱动”的任务变得简单。
 
 ## ✨ 特性
 
@@ -16,8 +16,8 @@
 
 ## 👤 作者信息
 
-*   **作者**: shenyulong2004
-*   **GitHub**: [shenyulong2004-maker](https://github.com/shenyulong2004-maker)
+*   **作者**: 凌封
+*   **网站**: [AI全书](https://aibook.ren)
 
 ## 🚀 快速开始
 
@@ -77,11 +77,6 @@ tasks:
 chrome:
   executable_path: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   debug_port: 9222
-  user_data_dir: "c:\\temp_chrome_data"
-
-logging:
-  level: "INFO"
-  file: "auto_chrome.log"
 ```
 
 ## 🛠️ 开发指南
@@ -93,7 +88,7 @@ logging:
 from framework.core.task_base import BaseTask
 
 class MyTask(BaseTask):
-    name = "my_task"
+    name = "my_task" # 命令行调用的名称
 
     def run(self):
         page = self.driver.get_page()
@@ -106,63 +101,22 @@ class MyTask(BaseTask):
 python main.py --task my_task
 ```
 
-**提示：** `tasks/templates/task_template.py` 包含详细注释和 AI 示例的开发模板，建议直接复制该文件开始开发。
-
-### 核心组件说明
-
-#### BrowserDriver
-浏览器驱动类，负责：
-- 通过 CDP 连接到已运行的 Chrome 浏览器
-- 智能选择可见页面（跳过扩展页面、devtools 页面）
-- 提供页面操作接口
-
-#### BaseTask
-任务基类，提供：
-- `setup()`：初始化环境，连接浏览器
-- `run()`：任务核心逻辑（需子类实现）
-- `teardown()`：清理资源
-- `execute()`：模板方法，安全执行任务
-
-#### AIAgent
-AI 代理抽象接口，提供：
-- `analyze_page(content)`：分析页面内容
-- `extract_structure(content, schema)`：提取结构化数据
-- 内置 `MockAgent` 用于测试
-
-#### Context
-上下文管理类，负责：
-- 加载配置文件
-- 管理日志实例
-- 提供全局配置访问
+**提示：** `tasks/templates/task_template.py` 它是包含详细注释和 AI 示例的开发模板，建议直接复制该文件开始开发。
 
 ## 📂 目录结构
 
 ```text
-autowebflow/
+auto-chrome/
 ├── framework/          # 核心框架代码
 │   ├── core/           # 驱动、基类、上下文
-│   │   ├── driver.py   # BrowserDriver - 浏览器连接与控制
-│   │   ├── task_base.py # BaseTask - 任务基类
-│   │   ├── context.py  # Context - 上下文管理
-│   │   └── registry.py # 任务自动发现与注册
 │   ├── ai/             # AI Agent 接口
-│   │   └── agent.py    # AIAgent 抽象类与 MockAgent
 │   └── utils/          # 工具函数
-│       ├── logger.py   # 日志配置
-│       └── launcher.py # 浏览器启动工具
 ├── tasks/              # 任务目录
 │   ├── examples/       # 示例任务
-│   │   ├── linux_do_browser.py      # 刷主题阅读数
-│   │   └── linux_do_posts_browser.py # 刷帖子阅读数
 │   └── templates/      # 任务模板
-│       └── task_template.py # 开发模板（含 AI 示例）
 ├── config/             # 配置文件
-│   └── settings.yaml   # 全局配置
-├── launch_browser.py   # 浏览器启动器（带远程调试端口）
-├── main.py             # 主入口
-├── .gitignore          # Git 忽略规则
-├── LICENSE             # MIT 许可证
-└── README.md           # 项目说明文档
+├── launch_browser.py   # 浏览器启动器
+└── main.py             # 主入口
 ```
 
 ## 🤝 贡献
